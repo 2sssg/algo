@@ -51,6 +51,7 @@ public class P7569 {
 //        }
 //    }
 
+
     public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
         col = Integer.parseInt(st.nextToken());
