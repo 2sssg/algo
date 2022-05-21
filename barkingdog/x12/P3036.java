@@ -26,6 +26,7 @@ public class P3036 {
         firstgear = arr[0];
         for(int i=1; i<N; ++i){
             g = gcd(arr[i],firstgear);
+
             bw.write(String.valueOf(firstgear/g));
             bw.write("/");
             bw.write(String.valueOf(arr[i]/g));
