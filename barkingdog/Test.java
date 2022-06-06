@@ -6,9 +6,14 @@ import java.util.*;
 
 public class Test {
     public static void main(String[] args) {
-        List<Integer>[] p = new ArrayList[10];
-        Arrays.fill(p,new ArrayList<>());
-        System.out.println(Arrays.toString(p));
+        Set<Integer> temp = new HashSet<>();
+        temp.add(1);
+        temp.add(2);
+        temp.add(3);
+        temp.add(4);
+        temp.add(5);
+        temp.add(6);
+        System.out.println(temp);
 
     }
 }
