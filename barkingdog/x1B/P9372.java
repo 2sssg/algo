@@ -3,7 +3,7 @@ package barkingdog.x1B;
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class P16398 {
+public class P9372 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
