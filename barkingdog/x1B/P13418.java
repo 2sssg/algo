@@ -31,15 +31,6 @@ public class P13418 {
     }
 //    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedReader br;
-    static {
-        try {
-            br = new BufferedReader(Source.getInputFileReader());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     static StringTokenizer st;
     static PriorityQueue<Pair> q = new PriorityQueue<>();
@@ -51,6 +42,7 @@ public class P13418 {
     static int V,E,v1,v2,w;
     static Pair p ;
     public static void main(String[] args) throws IOException {
+        br = Source.getBufferedReader(true,true);
         st = new StringTokenizer(br.readLine());
         V = Integer.parseInt(st.nextToken());
         E = Integer.parseInt(st.nextToken());

@@ -1,5 +1,7 @@
 package barkingdog.x13;
 
+import Constant.Source;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -49,6 +51,7 @@ public class P7453 {
     static int[] arr1, arr2, arr3, arr4;
     static Pair[] arr5;
     public static void main(String[] args) throws IOException {
+        br = Source.getBufferedReader();
         N = Integer.parseInt(br.readLine());
         arr1 = new int[N];
         arr2 = new int[N];

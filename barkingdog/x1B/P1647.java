@@ -1,5 +1,7 @@
 package barkingdog.x1B;
 
+import Constant.Source;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,6 +42,7 @@ public class P1647 {
     static boolean[] chk;
     static Pair p;
     public static void main(String[] args) throws IOException {
+        br = Source.getBufferedReader();
         st = new StringTokenizer(br.readLine());
         V = Integer.parseInt(st.nextToken());
         E = Integer.parseInt(st.nextToken());
