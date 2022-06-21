@@ -7,8 +7,7 @@ import barkingdog.x1B.P1647;
 import java.io.IOException;
 
 public class BaekjoonStarter {
-//    public static int curfilenum;
     public static void main(String[] args) throws IOException {
-        Source.runClass("P7453");
+        Source.runClass("P14938");
     }
 }
