@@ -8,6 +8,6 @@ import java.io.IOException;
 
 public class BaekjoonStarter {
     public static void main(String[] args) throws IOException {
-        Source.runClass("P1956");
+        Source.runClass("Gagyeboo");
     }
 }
