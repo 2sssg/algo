@@ -7,7 +7,8 @@ import barkingdog.x1B.P1647;
 import java.io.IOException;
 
 public class BaekjoonStarter {
-    public static void main(String[] args) throws IOException {
-        Source.runClass("Gagyeboo");
-    }
+
+	public static void main(String[] args) throws IOException {
+		Source.runClass("P16920");
+	}
 }
