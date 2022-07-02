@@ -118,11 +118,22 @@ public class Source {
         initTestCaseFile();
         try{
             File dir = new File(originFilePath.split("src")[0]+"src");
-            Class<?> obj = Class.forName(showFilesInDIr(dir.toString(),runClassName)
-                            .replace(".java","")
-                            .replaceAll("/",".")
-                            .split("src.")[1]
-            );
+            Class<?> obj;
+            try{
+                obj = Class.forName(showFilesInDIr(dir.toString(),runClassName)
+                    .replace(".java","")
+                    .replaceAll("/",".")
+                    .split("src.")[1]
+                );
+            }catch (IndexOutOfBoundsException e){
+                if(showFilesInDIr(dir.toString(),runClassName).equals("NONE")){
+                    System.out.println(runClassName + "파일이 없습니다.");
+                }else{
+                    System.out.println("다른 오류");
+                }
+                return;
+            }
+
             Method meth = obj.getMethod("main", String[].class);
             String[] params = null; // init params accordingly
             for(int i=1; i<Source.filecnt; ++i){

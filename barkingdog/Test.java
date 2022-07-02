@@ -4,57 +4,29 @@ import java.io.*;
 import java.util.*;
 
 public class Test {
-    static class Temp implements Comparable<Temp>{
-        int x;
-        int y;
 
-        @Override
-        public int compareTo(Temp o) {
-            return this.x-o.x;
-        }
-
-        public Temp(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        public String toString() {
-            return "Temp{" +
-                    "x=" + x +
-                    ", y=" + y +
-                    '}';
-        }
-    }
     public static void main(String[] args) {
-        PriorityQueue<Integer> q = new PriorityQueue<>();
-        q.add(1);
-        q.add(1);
-        q.add(1);
-        q.add(1);
-        q.add(1);
-        q.add(1);
-        q.add(1);
-        System.out.println(q);
+        int N = 4;
+        int[][] arr = {
+            {1,2,3,4},
+            {5,6,7,8},
+            {9,10,11,12},
+            {13,14,15,16}
+        };
+        int[][] temp = new int[N][N];
+        for(int i=0; i<N; ++i){
+            temp[i] = arr[i].clone();
+        }
 
-        TreeSet<Temp> t = new TreeSet<>();
-        t.add(new Temp(1,1));
-        t.remove(new Temp(1,0));
-        t.add(new Temp(1,2));
-        t.add(new Temp(1,3));
-        t.add(new Temp(1,4));
-        t.add(new Temp(1,5));
-        System.out.println(t);
+        for(int n=0; n<N; ++n){
+            for(int m=0; m<N; ++m){
+                arr[n][m] = temp[m][N-1-n];
+            }
+        }
 
-//        PriorityQueue<Temp> t = new PriorityQueue<>();
-//        t.add(new Temp(1,1));
-//        t.add(new Temp(1,2));
-//        t.add(new Temp(1,3));
-//        t.add(new Temp(1,4));
-//        t.add(new Temp(1,5));
-//        System.out.println(t);
-
-
+        for(int i=0; i<N; ++i){
+            System.out.println(Arrays.toString(arr[i]));
+        }
 
     }
 }
