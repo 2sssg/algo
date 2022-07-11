@@ -1,40 +1,5 @@
-3 6
-antarctica
-antahellotica
-antacartica
+8
+1 6 2 5 7 3 5 6
 
-2 3
-antaxxxxxxxtica
-antarctica
-
-9 8
-antabtica
-antaxtica
-antadtica
-antaetica
-antaftica
-antagtica
-antahtica
-antajtica
-antaktica
-
-9 6
-antatica
-antactica
-antadtica
-antaetica
-antaftica
-antagtica
-antahtica
-antajtica
-antaktica
-
-1 5
-antatica
-
-2 6
-antatica
-antaztica
-
-1 1
-a
+10
+1 2 3 4 5 6 7 8 9 10

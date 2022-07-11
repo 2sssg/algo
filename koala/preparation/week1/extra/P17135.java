@@ -1,5 +1,6 @@
 package koala.preparation.week1.extra;
 
+import Constant.Source;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,50 +10,56 @@ import java.util.StringTokenizer;
 public class P17135 {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
-	static int n,m,k,answer;
+	static int n,m,d,answer;
 	static int[][] arr,gamearr;
 
 	static int game(){
 		int killCount = 0;
 		while (true) {
 			for(int i=0; i<m; ++i){
-				if(arr[n][i]==1){
+				if(gamearr[n][i]==1){
 					int dist = Integer.MAX_VALUE;
 					int x=-1;
 					int y=-1;
 					for(int j=0; j<m; ++j){
 						for(int k=0; k<n; ++k){
-							if(Math.abs(arr[k][j]) == 1){
-								if(Math.abs(k-n)+Math.abs(i-j)<dist){
+							if(Math.abs(gamearr[k][j]) == 1){
+								if(Math.abs(k-n)+Math.abs(i-j)<dist && Math.abs(k-n)+Math.abs(i-j)<=d){
 									dist = Math.abs(k-n)+Math.abs(i-j);
 									x = k; y = j;
 								}
 							}
 						}
 					}
-					arr[x][y] = -1;
+					if(x!=-1 && y!=-1){
+						gamearr[x][y] = -1;
+					}
 				}
 			}
+//			for(int[] t: gamearr){
+//				System.out.println(Arrays.toString(t));
+//			}
+//			System.out.println();
 			for(int i=0; i<m; ++i){
-				if(arr[n-1][i]==-1){
+				if(gamearr[n-1][i]==-1){
 					killCount++;
 				}
 			}
 			int enemyCount = 0;
 			for(int i=n-2; i>=0; --i){
 				for(int j=m-1; j>=0; --j){
-					if(arr[i][j] == 1){
+					if(gamearr[i][j] == 1){
 						enemyCount++;
 					}
-					if(arr[i][j]==-1){
+					if(gamearr[i][j]==-1){
 						killCount++;
-						arr[i][j] = 0;
+						gamearr[i][j] = 0;
 					}
-					arr[i-1][j] = arr[i][j];
+					gamearr[i+1][j] = gamearr[i][j];
 				}
 			}
 			for(int i=0; i<m; ++i){
-				arr[0][i] = 0;
+				gamearr[0][i] = 0;
 			}
 			if(enemyCount==0) break;
 		}
@@ -76,20 +83,19 @@ public class P17135 {
 	}
 
 	public static void main(String[] args) throws IOException {
-		int enemyCount = 0;
+		br = Source.getBufferedReader();
 		answer = 0;
 		st = new StringTokenizer(br.readLine());
-		n = Integer.parseInt(st.nextToken()); m = Integer.parseInt(st.nextToken()); k = Integer.parseInt(st.nextToken());
+		n = Integer.parseInt(st.nextToken()); m = Integer.parseInt(st.nextToken()); d = Integer.parseInt(st.nextToken());
 		arr = new int[n+1][m];
+		gamearr = new int[n+1][m];
 		for(int i=0; i<n; ++i){
 			st = new StringTokenizer(br.readLine());
 			for(int j=0; j<m; ++j){
 				arr[i][j] = Integer.parseInt(st.nextToken());
-				if(arr[i][j]==1){
-					enemyCount++;
-				}
 			}
 		}
+		arch(0,0);
 		System.out.println(answer);
 
 	}

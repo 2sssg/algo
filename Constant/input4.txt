@@ -1,10 +1,10 @@
-9 6
-antatica
-antactica
-antadtica
-antaetica
-antaftica
-antagtica
-antahtica
-antajtica
-antaktica
+0 0 0 0 0 0 0 0 0 0
+0 1 1 0 0 0 0 0 0 0
+0 1 1 1 0 0 0 0 0 0
+0 0 1 1 1 1 1 0 0 0
+0 0 0 1 1 1 1 0 0 0
+0 0 0 0 1 1 1 0 0 0
+0 0 1 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
