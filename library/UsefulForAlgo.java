@@ -1,4 +1,7 @@
+package library;
+
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class UsefulForAlgo {
@@ -47,6 +50,42 @@ public class UsefulForAlgo {
     static int[] dx = {1,0,-1,0};
     static int[] dy = {0,1,0,-1};
 
+    // 배열 하나 출력
+    public static void testPrint(int[] arr){
+        System.out.println(Arrays.toString(arr));
+        System.out.println();
+    }
+
+    public static void testPrint(int[] arr,int end){
+        for(int i=0; i<=end; ++i){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+    }
+
+    public static void testPrint(int[] arr,int start,int end){
+        for(int i=start; i<=end; ++i){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+    }
+
+    public static void testPrint(int[][] arr){
+        for(int[] t: arr){
+            System.out.println(Arrays.toString(t));
+        }
+        System.out.println();
+    }
+
+    public static void testPrint(int[][] arr, int er, int ec){
+        for(int i=0; i<=er; ++i){
+            for(int j=0; j<=ec; ++j){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 
 
 }

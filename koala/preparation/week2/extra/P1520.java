@@ -52,13 +52,9 @@ public class P1520 {
 		r = Integer.parseInt(st.nextToken());
 		c = Integer.parseInt(st.nextToken());
 		init();
-		for(int i=0; i<r; ++i){
+		for(int i=0; i<r; ++i)
 			arr[i] = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-		}
 		dfs(0,0);
-		for(int[] t: enable){
-			System.out.println(Arrays.toString(t));
-		}
 		System.out.println(enable[0][0]);
 
 	}

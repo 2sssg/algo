@@ -2,15 +2,20 @@ package barkingdog.x0C;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class P1941 {
-    static class Pair{
-        int x; int y;
+    static class Pair implements Comparator<Pair> {
+        int x,y;
         public Pair(int x, int y) {
             this.x = x;
             this.y = y;
+        }
+        @Override
+        public int compare(Pair o1, Pair o2) {
+            return o1.x==o2.x?o1.y-o2.y:o1.x-o2.x;
         }
     }
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

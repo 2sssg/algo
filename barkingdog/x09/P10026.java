@@ -6,9 +6,7 @@ import java.util.Queue;
 
 public class P10026 {
     static class Pair{
-        int x;
-        int y;
-
+        int x,y;
         public Pair(int x, int y) {
             this.x = x;
             this.y = y;
