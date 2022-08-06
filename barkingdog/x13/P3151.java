@@ -22,7 +22,7 @@ public class P3151 {
         st = startindex;
         en = N;
         while(st<en){
-            mid = (st+en)/2;
+            mid = (st+en+1)/2;
             if(arr[mid]<=target) st = mid+1;
             else en = mid;
         }
