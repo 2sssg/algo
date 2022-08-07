@@ -1,10 +1,10 @@
-package segment_tree;
+package dijkstra;
 
 import Constant.Source;
 import java.io.IOException;
 
-public class SegmentTreeRunner {
+public class DijkstraRunner {
 	public static void main(String[] args) throws IOException {
-		Source.runClass("P9426");
+		Source.runClass("P11952");
 	}
 }
