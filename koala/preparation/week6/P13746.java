@@ -9,36 +9,27 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class P13565 {
-	static int n,m;
-	static int[][] arr;
-	static boolean[][] visit = new boolean[1000][1000];
+public class P13746 {
+	static int n,m,answer;
+	static char[][] arr;
+	static boolean[][] visit = new boolean[51][51];
 
-	static boolean dfs(int x, int y){
+	static void dfs(int x, int y){
 		visit[x][y] = true;
 		for(int i=0; i<4; ++i){
 			int nx = x+dx[i];
 			int ny = y+dy[i];
-			if(nx == n) return true;
-			if(chk(nx,ny,m)) continue;
-			if(arr[nx][ny]==1  || visit[nx][ny]) continue;
-			visit[nx][ny] = true;
-			if(dfs(nx,ny)) return true;
+			if(chk(nx,ny,n,m) || visit[nx][ny] || arr[nx][ny] == 'W') continue;
+			dfs(nx,ny);
 		}
-		return false;
 	}
 
 	public static void main(String[] args) throws IOException {
 		br = Source.getBufferedReader();
-		arr = new int[n=rstn()][m=rstn()];
-		for(int i=0; i<n; ++i) arr[i]=ra();
-		for(int j=0; j<m; ++j) {
-			if(arr[0][j] == 0 && !visit[0][j] &&dfs(0,j)){
-				System.out.println("YES");
-				return;
-			}
-		}
-		System.out.println("NO");
+		arr = new char[n=rstn()][m=rstn()];
+		for(int i=0; i<n; ++i) arr[i] = br.readLine().toCharArray();
+		for(int i=0; i<n; ++i)for(int j=0; j<m; ++j)if(arr[i][j]=='L'&&!visit[i][j]&&++answer>0) dfs(i,j);
+		System.out.println(answer);
 	}
 	////////////////////////////////bfs/////////////////////////////////////////////
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -48,12 +39,10 @@ public class P13565 {
 	static int rn() throws IOException {return Integer.parseInt(br.readLine());}
 	static void est() throws IOException {st = new StringTokenizer(br.readLine());}
 	static int rstn() throws IOException {if(st==null||!st.hasMoreTokens()) est(); return Integer.parseInt(st.nextToken());}
-	static int[] ra() throws IOException {return Arrays.stream(br.readLine().split("")).mapToInt(Integer::parseInt).toArray();}
+	static int[] ra() throws IOException {return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();}
 	static int[] dx = {-1,0,1,0};
 	static int[] dy = {0,-1,0,1};
-	static boolean chk(int x, int y, int m){return x<0 || y<0 || y>=m;}
+	static boolean chk(int x, int y, int n, int m){return x<0 || y<0 || x>=n || y>=m;}
 	static class Pair{int x,y;public Pair(int x, int y) {this.x = x;this.y = y;}}
-	static class Triple{ int x,y,z;public Triple(int x, int y,int z) {this.x = x;this.y = y;this.z = z;}}
-	static class Quad{ int w,x,y,z;public Quad(int w, int x, int y,int z) {this.w = w; this.x = x;this.y = y;this.z = z;}}
 	////////////////////////////////bfs/////////////////////////////////////////////
 }
