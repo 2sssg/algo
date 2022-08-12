@@ -115,6 +115,7 @@ public class Source {
 
 
     public static void runClass(String runClassName) throws IOException {
+        System.out.println(runClassName);
         initTestCaseFile();
         try{
             File dir = new File(originFilePath.split("src")[0]+"src");
