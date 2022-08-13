@@ -5,6 +5,6 @@ import java.io.IOException;
 
 public class KoalaRunner {
 	public static void main(String[] args) throws IOException {
-		Source.runClass("P18232");
+		Source.runClass("P20304");
 	}
 }

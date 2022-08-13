@@ -55,6 +55,13 @@ public class UsefulForAlgo {
         System.out.println();
     }
 
+    public static void testPrint(long[][] arr){
+        for(long[] t: arr){
+            System.out.println(Arrays.toString(t));
+        }
+        System.out.println();
+    }
+
     public static void testPrint(char[][] arr){
         for(char[] t: arr){
             System.out.println(Arrays.toString(t));

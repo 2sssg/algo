@@ -1,4 +1,4 @@
-package koala.preparation.week6.bfsdfs;
+package koala.preparation.week6.test;
 
 import Constant.Source;
 import java.io.BufferedReader;
@@ -6,47 +6,55 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class P15559 {
-	static HashMap<Character,Integer> dir = new HashMap<>();
-	static int n,m,answer;
-	static char[][] arr;
-	static int[][] visit;
+public class P17836 {
+	static int n,m,t,answer = Integer.MAX_VALUE;
+	static int[][] d,arr;
 
-	static void dfs(int x, int y,int u){
-		visit[x][y] = u;
-		int nx = x+dx[dir.get(arr[x][y])];
-		int ny = y+dy[dir.get(arr[x][y])];
-		if(visit[nx][ny]==u) return;
-		if(visit[nx][ny] != -1) {
-			answer--; return;
+	static void init() throws IOException {
+		arr = new int[n=rstn()][m=rstn()]; t=rstn();
+		d = new int[n][m];
+		for(int i=0; i<n; ++i) Arrays.fill(d[i],-1);
+		for(int i=0; i<n; ++i) arr[i] = ra();
+	}
+
+	static String bfs(){
+		Queue<Pair> q = new ArrayDeque<>();
+		d[0][0] = 0;
+		q.add(new Pair(0,0));
+
+		while(!q.isEmpty()){
+			Pair p = q.poll();
+			if(d[p.x][p.y]>t) {
+				if(answer>t) return "Fail";
+				else return Integer.toString(answer);
+			}
+			if(d[p.x][p.y]>=answer) return Integer.toString(answer);
+			if(p.x == n-1 && p.y == m-1) return Integer.toString(d[p.x][p.y]);
+			if(arr[p.x][p.y]==2){
+				answer = d[p.x][p.y]+Math.abs((n-1)-p.x) + Math.abs((m-1)-p.y);
+				continue;
+			}
+			for(int i=0; i<4; ++i){
+				int nx = p.x+dx[i];
+				int ny = p.y+dy[i];
+				if(chk(nx,ny,n,m) || arr[nx][ny]==1 || d[nx][ny] != -1) continue;
+				q.add(new Pair(nx,ny));
+				d[nx][ny] = d[p.x][p.y] + 1;
+			}
 		}
-		dfs(nx,ny,u);
+
+		return answer>t?"Fail":Integer.toString(answer);
 	}
 
 	public static void main(String[] args) throws IOException {
 		br = Source.getBufferedReader();
-		dir.put('N',0);
-		dir.put('W',1);
-		dir.put('S',2);
-		dir.put('E',3);
-		answer = 0;
-		arr = new char[n=rstn()][m=rstn()];
-		visit = new int[n][m];
-		for(int i=0; i<n; ++i) Arrays.fill(visit[i],-1);
-		for(int i=0; i<n; ++i) arr[i] = br.readLine().toCharArray();
-		for(int i=0; i<n; ++i){
-			for(int j=0; j<m; ++j){
-				if(visit[i][j]==-1 && ++answer>0){
-					dfs(i,j,i*m+j);
-				}
-			}
-		}
-
-		System.out.println(answer);
+		init();
+		System.out.println(bfs());
 	}
 	////////////////////////////////bfs/////////////////////////////////////////////
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
