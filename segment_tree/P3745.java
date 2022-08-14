@@ -1,29 +1,22 @@
 package segment_tree;
 
 import Constant.Source;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
-public class P12015 {
+public class P3745 {
 	static int n;
-	static List<Pair> pairs;
+	static Pair[] pairs;
 	static int[] seg;
+
 	static void init() throws IOException {
-		n=rn();
-		pairs = new ArrayList<>();
+		n=Integer.parseInt(br.readLine().trim());
+		pairs = new Pair[n+1];
 		seg = new int[4*n];
 		est();
-		pairs.add(new Pair(Integer.MIN_VALUE,Integer.MAX_VALUE));
-		for(int i=1; i<=n; ++i) pairs.add(new Pair(rstn(),i));
-		pairs.sort((o1, o2) -> o1.x == o2.x ? o2.y > o1.y ? 1 : -1 : o1.x > o2.x ? 1 : -1);
+		pairs[0] = new Pair(Integer.MIN_VALUE,Integer.MAX_VALUE);
+		for(int i=1; i<=n; ++i) pairs[i] = new Pair(rstn(),i);
+		Arrays.sort(pairs, (o1,o2)->o1.x==o2.x?o2.y>o1.y?1:-1:o1.x>o2.x?1:-1);
 	}
 
 	static int update(int s, int e, int node, int idx){
@@ -40,15 +33,22 @@ public class P12015 {
 		return Math.max(query(s, mid, node*2, l, r),query(mid+1, e, node*2+1, l, r));
 	}
 
-	public static void main(String[] args) throws IOException{
-		br=Source.getBufferedReader();
-		init();
-		for(int i=1; i<=n; ++i){
-			update(1,n,1, pairs.get(i).y);
+	public static void main(String[] args) {
+		br = Source.getBufferedReader();
+		while(true){
+			try{
+				init();
+				int answer = 0;
+				for(int i=1; i<=n; ++i){
+					update(1,n,1, pairs[i].y);
+				}
+				System.out.println(seg[1]);
+			}catch (Exception e){
+				break;
+			}
 		}
-		System.out.println(seg[1]);
-	}
 
+	}
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
 	static int rn() throws IOException {return Integer.parseInt(br.readLine());}
