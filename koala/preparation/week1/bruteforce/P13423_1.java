@@ -7,51 +7,36 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
-public class P13424 {
+public class P13423_1 {
 
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-	static StringTokenizer st;
+	static HashSet<Integer> hs = new HashSet<>();
 	static int t, n, answer;
-	static int[] arr, use = new int[3];
-	static boolean[] visit;
-
-	static boolean chk(int x1, int x2, int x3) {
-		return Math.abs(x2 * 2) == Math.abs(x1 + x3);
-	}
-
-	static void f(int depth, int cur) {
-		if (depth == 3) {
-			if (chk(use[0], use[1], use[2])) {
-				answer++;
-			}
-			return;
-		}
-		for (int i = cur; i < n; ++i) {
-			if (visit[i]) {
-				continue;
-			}
-			visit[i] = true;
-			use[depth] = arr[i];
-			f(depth + 1, i + 1);
-			visit[i] = false;
-		}
-	}
+	static int[] arr;
 
 	public static void main(String[] args) throws IOException {
 		br = Source.getBufferedReader();
 		t = Integer.parseInt(br.readLine());
 		while (t-- > 0) {
 			answer = 0;
+			hs = new HashSet<>();
 			n = Integer.parseInt(br.readLine());
 			arr = Arrays.stream(br.readLine().split(" "))
 				.mapToInt(Integer::parseInt)
 				.sorted()
 				.toArray();
-			visit = new boolean[n];
-			f(0,0);
+			hs.addAll(Arrays.stream(arr).boxed().collect(Collectors.toList()));
+
+			for(int i=0; i<n-2; ++i)
+				for(int j=i+1; j<n-1; ++j)
+					if(hs.contains(Math.abs(arr[i]-arr[j])+arr[j]))
+						answer++;
+
 			bw.write(String.valueOf(answer));
 			bw.write("\n");
 		}
