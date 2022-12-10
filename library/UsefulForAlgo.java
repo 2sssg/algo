@@ -23,6 +23,10 @@ public class UsefulForAlgo {
     static class Pair{int x,y;public Pair(int x, int y) {this.x = x;this.y = y;}}
     static class Triple{ int x,y,z;public Triple(int x, int y,int z) {this.x = x;this.y = y;this.z = z;}}
     static class Quad{ int w,x,y,z;public Quad(int w, int x, int y,int z) {this.w = w; this.x = x;this.y = y;this.z = z;}}
+    static final int IINF = Integer.MAX_VALUE;
+    static final long LINF = Long.MAX_VALUE;
+    static final int HIINF = Integer.MAX_VALUE / 2;
+    static final long HLINF = Long.MAX_VALUE / 2;
     ////////////////////////////////bfs/////////////////////////////////////////////
 
 //    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
