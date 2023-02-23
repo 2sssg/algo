@@ -6,6 +6,6 @@ import java.io.IOException;
 public class LazyRunner {
 
 	public static void main(String[] args) throws IOException {
-		Source.runClass("P1395");
+		Source.runClass("P13925");
 	}
 }

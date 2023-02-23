@@ -80,7 +80,6 @@ public class P16569 {
 		br = Source.getBufferedReader();
 		init();
 		bfs();
-		UsefulForAlgo.testPrint(d);
 		bfs2();
 		System.out.println(height+" "+time);
 	}

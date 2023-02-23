@@ -8,6 +8,6 @@ import java.util.TreeMap;
 
 public class KoalaRunner {
 	public static void main(String[] args) throws IOException {
-		Source.runClass("P1234");
+		Source.runClass("P10707");
 	}
 }

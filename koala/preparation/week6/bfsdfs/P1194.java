@@ -112,7 +112,6 @@ public class P1194 {
 		br = Source.getBufferedReader();
 		init();
 		System.out.println(bfs());
-		UsefulForAlgo.testPrint(dist);
 	}
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder sb = new StringBuilder();

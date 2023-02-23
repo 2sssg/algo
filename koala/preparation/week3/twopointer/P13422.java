@@ -35,7 +35,6 @@ public class P13422 {
 			st = new StringTokenizer(br.readLine());
 			for(int i=1; i<=n; ++i) arr[i] = rstn()+arr[i-1];
 			for(int i=n+1; i<n+m; ++i) arr[i] = (arr[i-n]-arr[i-n-1])+arr[i-1];
-			UsefulForAlgo.testPrint(arr);
 			for(int i=0; i<n; ++i){
 				long money = arr[i+m]-arr[i];
 				if(money<k) answer++;
