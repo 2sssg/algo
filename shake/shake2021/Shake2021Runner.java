@@ -1,10 +1,11 @@
-package extra;
+package shake.shake2021;
 
 import Constant.Source;
 import java.io.IOException;
 
-public class ExtraRunner {
+public class Shake2021Runner {
+
 	public static void main(String[] args) throws IOException {
-		Source.runClass("P13459");
+		Source.runClass("F2021");
 	}
 }

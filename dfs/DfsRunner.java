@@ -1,10 +1,11 @@
-package extra;
+package dfs;
 
 import Constant.Source;
 import java.io.IOException;
 
-public class ExtraRunner {
+public class DfsRunner {
+
 	public static void main(String[] args) throws IOException {
-		Source.runClass("P13459");
+		Source.runClass("P24479");
 	}
 }

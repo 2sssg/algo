@@ -1,19 +1,95 @@
-package simulation;
+package shake.shake8;
 
+import Constant.Source;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class P17140 {
+public class Shake8D {
+	static int n;
+	static long[] arr;
+	static long k, tempk;
+	static Stack<Pair> s;
 
-	public static void main(String[] args) {
+	static void init() throws IOException {
+		s = new Stack<>();
+		n = rn(); arr = ral(); k = rnl(); tempk = k;
+	}
+
+	static void stackInit() {
+		for (int i = n - 1; i >= 0;) {
+			long cur = arr[i];
+			int cnt = 0;
+			while (i >= 0 && arr[i] == cur) {
+				cnt++;
+				--i;
+			}
+			s.push(new Pair(cur, cnt));
+		}
+//		System.out.println(s);
+	}
+
+
+	public static void main(String[] args) throws IOException {
+		br = Source.getBufferedReader();
+		init();
+		List<Pair> list = new ArrayList<>();
+		for (int i = 0; i < n; ++i) {
+			list.add(new Pair(arr[i], i));
+		}
+		list.sort(new Comparator<Pair>() {
+			@Override
+			public int compare(Pair o1, Pair o2) {
+				if (o1.x == o2.x) {
+					return (int)(o2.y - o1.y);
+				}
+				return (int) (o2.x - o1.x);
+			}
+		});
+		int idx = n;
+		for (int i = 0; i < n; ++i) {
+			Pair cur = list.get(i);
+			if (cur.y < idx - 1) {
+				for (int j = 0; j < idx; ++j) {
+					k -= (cur.x - arr[j]);
+					arr[j] = cur.x;
+				}
+				break ;
+			} else {
+				idx = (int)cur.y;
+			}
+		}
+		if (k < 0) {
+			System.out.println(0);
+			return ;
+		}
+		long ans = tempk == k ? 0 : 1;
+		stackInit();
+
+		while (!s.isEmpty() && k > 0) {
+			Pair cur = s.pop();
+			if (s.isEmpty()) {
+				ans += (k / cur.y);
+				break ;
+			}
+			long cnt = min((s.peek().x - cur.x) * cur.y, k);
+			ans += (cnt / cur.y);
+			k -= cnt;
+			s.peek().y += cur.y;
+		}
+		System.out.println(ans);
 
 	}
+
+
 	////////////////////////////////입출력/////////////////////////////////////////////
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -25,8 +101,10 @@ public class P17140 {
 	static void est() throws IOException {st = new StringTokenizer(r());}
 	static int rstn() throws IOException {if(st==null||!st.hasMoreTokens()) est(); return Integer.parseInt(st.nextToken());}
 	static long rstnl() throws IOException {if(st==null||!st.hasMoreTokens()) est(); return Long.parseLong(st.nextToken());}
-	static int[] ra() throws IOException {return Arrays.stream(r().split(" ")).mapToInt(Integer::parseInt).toArray();}
-	static long[] ral() throws IOException {return Arrays.stream(r().split(" ")).mapToLong(Long::parseLong).toArray();}
+	static int[] ra(String delim) throws IOException {return Arrays.stream(r().split(delim)).mapToInt(Integer::parseInt).toArray();}
+	static long[] ral(String delim) throws IOException {return Arrays.stream(r().split(delim)).mapToLong(Long::parseLong).toArray();}
+	static int[] ra() throws IOException {return ra(" ");}
+	static long[] ral() throws IOException {return ral(" ");}
 	static int[] rab() throws IOException { int[] temp = ra(); int[] ret = new int[temp.length + 1]; System.arraycopy(temp, 0, ret, 1, temp.length); return ret;}
 	static long[] rabl() throws IOException { long[] temp = ral(); long[] ret = new long[temp.length + 1]; System.arraycopy(temp, 0, ret, 1, temp.length); return ret;}
 	////////////////////////////////테스트 출력 ////////////////////////////////////////
@@ -50,7 +128,16 @@ public class P17140 {
 	/////////////////////////////// bfs /////////////////////////////////////////////
 
 	////////////////////////////// 자료구조 ///////////////////////////////////////////
-	static class Pair{int x,y;public Pair(int x, int y) {this.x = x;this.y = y;}}
+	static class Pair{long x,y;public Pair(long x, long y) {this.x = x;this.y = y;}
+
+		@Override
+		public String toString() {
+			return "Pair{" +
+					"x=" + x +
+					", y=" + y +
+					'}';
+		}
+	}
 	static class Triple{ int x,y,z;public Triple(int x, int y,int z) {this.x = x;this.y = y;this.z = z;}}
 	static class Quad{ int w,x,y,z;public Quad(int w, int x, int y,int z) {this.w = w; this.x = x;this.y = y;this.z = z;}}
 	////////////////////////////// 자료구조 ///////////////////////////////////////////
