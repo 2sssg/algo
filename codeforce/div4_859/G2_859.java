@@ -1,4 +1,4 @@
-package dp;
+package codeforce.div4_859;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,63 +9,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class P25605 {
-	// 잎개수, 기간, 최대용량, 해독량, 시작축적량
-	static int n, m, a, b, c;
-	// 독, 행복도
-	static Pair<Integer, Integer>[] leafs;
-
-	static int[][][] dp;
+public class G2_859 {
+	static int t;
 
 	public static void main(String[] args) throws IOException {
-		n = rstn(); m = rstn(); a = rstn(); b = rstn(); c = rstn();
-		leafs = new Pair[n];
-		for (int i = 0; i < n; ++i) leafs[i] = new Pair<>(rstn(), rstn());
-		dp = new int[m + 1][a + 1][n];
-		for (int i = 0; i < m + 1; ++i) for (int j = 0; j < a + 1; ++j) for (int k = 0; k < n; ++k) dp[i][j][k] = -1;
-		Arrays.fill(dp[0][c], 0);
-//		for (int i = 0; i < n; ++i) {
-//			Pair<Integer, Integer> leaf = leafs[i];
-//			for (int j = i; j < n; ++j) {
-//				if (c + leaf.x > a) continue;
-//				dp[1][leaf.x + c][j] = max(dp[1][leaf.x + c][j], leaf.y);
-//			}
-//		}
+		t = rn();
+		while (t-- > 0) {
 
-		System.out.println();
-
-		for (int day = 1; day <= m; ++day) {
-			for (int poison = 0; poison <= a; ++poison) {
-				if (max(0, c - (b * (day - 1))) == poison - leafs[0].x) {
-					Arrays.fill(dp[day][poison], leafs[0].y);
-				}
-				if (poison + b <= a)
-					dp[day][poison][0] = dp[day - 1][poison + b][0];
-				for (int leaf = 1; leaf < n; ++leaf) {
-					if (max(0, c - (b * (day - 1))) == poison - leafs[leaf].x) {
-						Arrays.fill(dp[day][poison], leaf, n, leafs[leaf].y);
-					}
-					dp[day][poison][leaf] = max(dp[day][poison][leaf], dp[day][poison][leaf - 1]);
-					// 안먹고 넘어가기
-					// 안먹으니까, 그 전날 그대로
-					if (poison + b <= a)
-						dp[day][poison][leaf] = max(dp[day][poison][leaf], dp[day - 1][poison + b][leaf]);
-
-					// 먹을 때
-					if (poison + b - leafs[leaf].x <= a && 0 <= poison + b - leafs[leaf].x
-							&& dp[day - 1][poison + b - leafs[leaf].x][leaf - 1] >= 0) {
-						dp[day][poison][leaf] = max(dp[day][poison][leaf], dp[day - 1][poison + b - leafs[leaf].x][leaf - 1] + leafs[leaf].y);
-					}
-				}
-			}
 		}
-		for (int i = 0; i <= m; ++i) {
-			System.out.println("[ "+i+"일차 ]");
-			testPrint(dp[i]);
-			System.out.println();
-		}
-
 	}
+
 	////////////////////////////////입출력/////////////////////////////////////////////
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -89,7 +42,7 @@ public class P25605 {
 	static void testPrint(long[] arr){System.out.println(Arrays.toString(arr));}
 	static void testPrint(int[] arr,int end){ for(int i=0; i<=end; ++i) System.out.print(arr[i]+" ");}
 	static void testPrint(int[] arr,int start,int end){ for(int i=start; i<=end; ++i) System.out.print(arr[i]+" ");}
-	static void testPrint(int[][] arr){ for(int i = 0; i<arr.length; i += 1) {System.out.print("["+i+"] "); testPrint(arr[i]);} }
+	static void testPrint(int[][] arr){ for(int[] t: arr) testPrint(t); }
 	static void testPrint(long[][] arr){ for(long[] t: arr) testPrint(t); }
 	static void testPrint(char[][] arr){ for(char[] t: arr) testPrint(t); }
 	static void testPrint(int[][] arr, int er, int ec){ for(int i=0; i<=er; ++i) testPrint(arr[i], ec); }
