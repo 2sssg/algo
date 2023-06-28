@@ -70,19 +70,6 @@ public class P17142 {
 				tempvisit[nx][ny] = tempvisit[cx][cy]+1;
 			}
 		}
-//		System.out.printf("count : %d%n",count);
-//		System.out.printf("zc : %d%n",zc);
-//		System.out.printf("max : %d%n%n",max);
-		for(int i=0; i<n; ++i){
-			for(int j=0; j<n; ++j){
-//				if(arr[i][j]==1 || tempvisit[i][j]!=-1 || arr[i][j]==2){
-//					System.out.print("1 ");
-//				}else{
-//					System.out.print("0 ");
-//				}
-			}
-//			System.out.println();
-		}
 		return count==zc?max:-1;
 	}
 

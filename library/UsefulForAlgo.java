@@ -22,8 +22,19 @@ public class UsefulForAlgo {
     static long[] ral(String delim) throws IOException {return Arrays.stream(r().split(delim)).mapToLong(Long::parseLong).toArray();}
     static int[] ra() throws IOException {return ra(" ");}
     static long[] ral() throws IOException {return ral(" ");}
-    static int[] rab() throws IOException { int[] temp = ra(); int[] ret = new int[temp.length + 1]; System.arraycopy(temp, 0, ret, 1, temp.length); return ret;}
-    static long[] rabl() throws IOException { long[] temp = ral(); long[] ret = new long[temp.length + 1]; System.arraycopy(temp, 0, ret, 1, temp.length); return ret;}
+    static int[] bra() throws IOException { return bra(0); }
+    static int[] bra(int item) throws IOException { int[] temp=ra(); int[] ret=new int[temp.length+1]; ret[0]=item; System.arraycopy(temp,0,ret,1,temp.length); return ret;}
+    static int[] rab() throws IOException { return rab(0); }
+    static int[] rab(int item) throws IOException { int[] temp=ra();int[] ret=new int[temp.length+1];ret[temp.length]=item;System.arraycopy(temp,0,ret,0,temp.length);return ret;}
+    static int[] brab() throws IOException { return brab(0, 0); }
+    static int[] brab(int item1, int item2) throws IOException { int[] temp=ra();int[] ret=new int[temp.length+2]; ret[0]=item1; ret[temp.length+1]=item2; System.arraycopy(temp, 0, ret, 1, temp.length); return ret;}
+    static long[] bral() throws IOException { return bral(0); }
+    static long[] bral(int item) throws IOException { long[] temp=ral(); long[] ret = new long[temp.length+1]; ret[0]=item; System.arraycopy(temp,0,ret,1,temp.length); return ret;}
+    static long[] rabl() throws IOException { return rabl(0);}
+    static long[] rabl(int item) throws IOException { long[] temp = ral(); long[] ret = new long[temp.length+1]; ret[temp.length]=item; System.arraycopy(temp, 0, ret, 0, temp.length); return ret;}
+    static long[] brabl() throws IOException { return brabl(0, 0); }
+    static long[] brabl(int item1, int item2) throws IOException { long[] temp = ral(); long[] ret = new long[temp.length+2]; ret[0]=item1; ret[temp.length+1]=item2;System.arraycopy(temp, 0, ret, 1, temp.length); return ret;}
+    static void pt(Object o) {System.out.println(o);}
     ////////////////////////////////테스트 출력 ////////////////////////////////////////
     static void testPrint(int[] arr){ System.out.println(Arrays.toString(arr));}
     static void testPrint(char[] arr){ System.out.println(Arrays.toString(arr));}
@@ -72,5 +83,7 @@ public class UsefulForAlgo {
     static int gcd(int a, int b){ if(b == 0) return a; return gcd(b, a % b);}
     static long lcm(long a, long b) { return a * b / gcd(a, b); }
     static int lcm(int a, int b) { return a * b / gcd(a, b); }
+    static int[] carr(int[] arr) {int[] temp = new int[arr.length]; for(int i = 1; i < arr.length; ++i) temp[i] = temp[i - 1] + arr[i]; return temp;}
+    static int[] carr(int size) throws IOException {int[] temp = new int[size + 1]; for(int i = 1; i <= size; ++i) temp[i] = temp[i - 1] + rstn(); return temp;}
     ////////////////////////////// 함수 //////////////////////////////////////////////
 }

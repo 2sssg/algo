@@ -6,9 +6,9 @@ import java.io.IOException;
 public class CodeForceRunner {
 
 	public static void main(String[] args) throws IOException {
-		String contestNumber = "859";
-		Source.runClass("A_" + contestNumber);
-//		Source.runClass("B_" + contestNumber);
+		String contestNumber = "edu_146";
+//		Source.runClass("A_" + contestNumber);
+		Source.runClass("B_" + contestNumber);
 //		Source.runClass("C_" + contestNumber);
 //		Source.runClass("D_" + contestNumber);
 //		Source.runClass("E_" + contestNumber);

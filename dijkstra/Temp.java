@@ -10,12 +10,32 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Queue;
 import java.util.StringTokenizer;
+class TTemp {
+	private int x;
+	int y;
+	int z;
+
+	public TTemp(int x, int y, int z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+
+
+}
 
 public class Temp {
+
+
+
 	static int n,m;
 	static int[] dist;
 	static HashMap<Integer, Integer> ladder, snake;
 	public static void main(String[] args) throws IOException {
+
+		TTemp t = new TTemp(1,2,3);
+
+
 		n = rstn(); m = rstn();
 		ladder = new HashMap<>();
 		snake = new HashMap<>();

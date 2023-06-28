@@ -60,19 +60,18 @@ public class P2178 {
                 ans = dist[curP.x][curP.y];
                 break;
             }
+
             for(int i=0; i<4; i++){
-                if(arr[curP.x + dx[i]][curP.y + dy[i]] == 1 && dist[curP.x + dx[i]][curP.y + dy[i]] == -1){
-                    q.add(new Pair(curP.x + dx[i],curP.y + dy[i]));
-                    dist[curP.x + dx[i]][curP.y + dy[i]] = dist[curP.x][curP.y] + 1;
-                }
+                int nx = curP.x + dx[i];
+                int ny = curP.y + dy[i];
+                if (nx < 0 || ny < 0 || nx >= row || ny >= col) continue;
+//                if (dist[nx][ny] != 0) continue;
+//                if (dist[nx][ny] <= dist[curP.x][curP.y] + curP.w) continue;
+                q.add(new Pair(nx, ny));
+                dist[nx][ny] = dist[curP.x][curP.y] + 1;
             }
 
         }
         System.out.println(ans);
-
-
-
-
-
     }
 }
